@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Util;
 
+/* Name: Andrew Trinidad
+ * Student ID: 301021154
+ * Modified last: This code was taken from the original PlayerController
+ * but this script is for level 2 modifing movement axis's.
+ */
 public class PlayerControllerLevel2 : MonoBehaviour
 {
     public SpeedLevel2 speed;
@@ -69,10 +74,12 @@ public class PlayerControllerLevel2 : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Cloud":
+                Debug.Log("Collided with cloud");
                 _thunderSound.Play();
                 gameController.Lives -= 1;
                 break;
             case "Island":
+                Debug.Log("Collided with Island");
                 _yaySound.Play();
                 gameController.Score += 100;
                 break;

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed:
-    min: 0
-    max: 0
+    min: -0.04
+    max: 0.04
   boundary:
-    Top: 0
-    Right: 0
-    Bottom: 0
-    Left: 0
+    Top: 2.06
+    Right: -4.5
+    Bottom: -3.68
+    Left: -4.5
   gameController: {fileID: 0}
 --- !u!1001 &1904557362636010903
 PrefabInstance:
@@ -36,12 +36,12 @@ PrefabInstance:
     - target: {fileID: 1611093553563445763, guid: 887c5bee811983a4cb06f9ea66643b36,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.681448
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1611093553563445763, guid: 887c5bee811983a4cb06f9ea66643b36,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.3343349
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1611093553563445763, guid: 887c5bee811983a4cb06f9ea66643b36,
         type: 3}

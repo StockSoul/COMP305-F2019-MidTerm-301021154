@@ -5,7 +5,7 @@ using UnityEngine;
 /* Name: Andrew Trinidad
  * Student ID: 301021154
  * Modified last: This code was taken from the original OceanController
- * but this script is for level 2.
+ * but this script is for level 2 modifing speed values and directions of the Ocean.
  */
 public class OceanControllerLevel2 : MonoBehaviour
 {

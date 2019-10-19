@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/* Name: Andrew Trinidad
+ * Student ID: 301021154
+ * Modified last: Game Controller was modified to load Level 2,
+ * and to manage and pass on Score and Lives alongside Highscore to Level 2 
+ */
+
 public class GameController : MonoBehaviour
 {
     [Header("Scene Game Objects")]
@@ -27,7 +33,7 @@ public class GameController : MonoBehaviour
     public Text scoreLabel;
     public Text highScoreLabel;
 
-    public GameObject highScore;
+    public GameObject scoreBoard;
 
     [Header("UI Control")]
     public GameObject startLabel;
@@ -46,7 +52,10 @@ public class GameController : MonoBehaviour
         set
         {
             _lives = value;
-            if(_lives < 1)
+
+            scoreBoard.GetComponent<ScoreBoard>().lives = _lives;
+
+            if (_lives < 1)
             {
                 
                 SceneManager.LoadScene("End");
@@ -69,14 +78,18 @@ public class GameController : MonoBehaviour
         set
         {
             _score = value;
-            if(_score >= 500 && SceneManager.GetActiveScene().name != "Level2")
+
+            scoreBoard.GetComponent<ScoreBoard>().score = _score;
+
+            if (scoreBoard.GetComponent<ScoreBoard>().Highscore < _score)
+            {
+                scoreBoard.GetComponent<ScoreBoard>().Highscore = _score;
+            }
+            
+            if (_score >= 500 && SceneManager.GetActiveScene().name != "Level2")
             {
                 SceneManager.LoadScene("Level2");
-            }
 
-            if (highScore.GetComponent<HighScore>().score < _score)
-            {
-                highScore.GetComponent<HighScore>().score = _score;
             }
             scoreLabel.text = "Score: " + _score.ToString();
         }
@@ -87,11 +100,12 @@ public class GameController : MonoBehaviour
     {
         GameObjectInitialization();
         SceneConfiguration();
+
     }
 
     private void GameObjectInitialization()
     {
-        highScore = GameObject.Find("HighScore");
+        scoreBoard = GameObject.Find("ScoreBoard");
 
         startLabel = GameObject.Find("StartLabel");
         endLabel = GameObject.Find("EndLabel");
@@ -120,6 +134,10 @@ public class GameController : MonoBehaviour
                 endLabel.SetActive(false);
                 restartButton.SetActive(false);
                 activeSoundClip = SoundClip.ENGINE;
+
+                Lives = 5;
+                Score = 0;
+
                 break;
             case "Level2":
                 highScoreLabel.enabled = false;
@@ -128,6 +146,9 @@ public class GameController : MonoBehaviour
                 endLabel.SetActive(false);
                 restartButton.SetActive(false);
                 activeSoundClip = SoundClip.ENGINE;
+
+                Lives = scoreBoard.GetComponent<ScoreBoard>().lives;
+                Score = scoreBoard.GetComponent<ScoreBoard>().score;
                 break;
             case "End":
                 scoreLabel.enabled = false;
@@ -135,12 +156,9 @@ public class GameController : MonoBehaviour
                 startLabel.SetActive(false);
                 startButton.SetActive(false);
                 activeSoundClip = SoundClip.NONE;
-                highScoreLabel.text = "High Score: " + highScore.GetComponent<HighScore>().score;
+                highScoreLabel.text = "High Score: " + scoreBoard.GetComponent<ScoreBoard>().Highscore;
                 break;
         }
-
-        Lives = 5;
-        Score = 0;
 
 
         if ((activeSoundClip != SoundClip.NONE) && (activeSoundClip != SoundClip.NUM_OF_CLIPS))
@@ -174,7 +192,7 @@ public class GameController : MonoBehaviour
     // Event Handlers
     public void OnStartButtonClick()
     {
-        DontDestroyOnLoad(highScore);
+        DontDestroyOnLoad(scoreBoard);
         SceneManager.LoadScene("Main");
     }
 

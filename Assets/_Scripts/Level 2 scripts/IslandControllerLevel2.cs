@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Util;
 
+/* Name: Andrew Trinidad
+ * Student ID: 301021154
+ * Modified last: This code was taken from the original IslandController
+ * but this script is for level 2 modifing speed values and directions of the Islands.
+ */
+
 public class IslandControllerLevel2 : MonoBehaviour
 {
     public float horizontalSpeed = 0.04f;

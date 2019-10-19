@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Util
 {
+    /* Name: Andrew Trinidad
+ * Student ID: 301021154
+ * Modified last: Copy of the original boundary. Probably not necessary.
+ */
     [System.Serializable]
     public class BoundaryLevel2
     {
