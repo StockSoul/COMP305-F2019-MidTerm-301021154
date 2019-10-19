@@ -69,8 +69,10 @@ public class GameController : MonoBehaviour
         set
         {
             _score = value;
-
-            
+            if(_score >= 500 && SceneManager.GetActiveScene().name != "Level2")
+            {
+                SceneManager.LoadScene("Level2");
+            }
 
             if (highScore.GetComponent<HighScore>().score < _score)
             {
@@ -112,6 +114,14 @@ public class GameController : MonoBehaviour
                 activeSoundClip = SoundClip.NONE;
                 break;
             case "Main":
+                highScoreLabel.enabled = false;
+                startLabel.SetActive(false);
+                startButton.SetActive(false);
+                endLabel.SetActive(false);
+                restartButton.SetActive(false);
+                activeSoundClip = SoundClip.ENGINE;
+                break;
+            case "Level2":
                 highScoreLabel.enabled = false;
                 startLabel.SetActive(false);
                 startButton.SetActive(false);
