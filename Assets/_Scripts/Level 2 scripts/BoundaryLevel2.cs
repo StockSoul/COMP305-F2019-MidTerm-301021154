@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace util
+namespace Util
 {
     [System.Serializable]
     public class BoundaryLevel2

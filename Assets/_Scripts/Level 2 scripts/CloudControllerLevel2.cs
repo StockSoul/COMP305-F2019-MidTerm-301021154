@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using Util;
 
-public class IslandControllerLevel2 : MonoBehaviour
+public class CloudControllerLevel2 : MonoBehaviour
 {
-    public float horizontalSpeed = 0.04f;
+    //-0.01
+    //0.01
 
-    //Top X 3.53
-    //Top Y -3.68
-    //Bottom X -5.63
-    //Botton Y 2.06
+    //0.05
+    //0.08
+    [Header("Speed Values")]
+    [SerializeField]
+    public SpeedLevel2 horizontalSpeedRange;
 
+    [SerializeField]
+    public SpeedLevel2 verticalSpeedRange;
 
+    public float verticalSpeed;
+    public float horizontalSpeed;
+
+    [SerializeField]
     public BoundaryLevel2 boundary;
 
     // Start is called before the first frame update
@@ -33,7 +41,7 @@ public class IslandControllerLevel2 : MonoBehaviour
     /// </summary>
     void Move()
     {
-        Vector2 newPosition = new Vector2(horizontalSpeed, 0.0f);
+        Vector2 newPosition = new Vector2(horizontalSpeed, verticalSpeed);
         Vector2 currentPosition = transform.position;
 
         currentPosition -= newPosition;
@@ -45,8 +53,12 @@ public class IslandControllerLevel2 : MonoBehaviour
     /// </summary>
     void Reset()
     {
+        horizontalSpeed = Random.Range(horizontalSpeedRange.min, horizontalSpeedRange.max);
+        verticalSpeed = Random.Range(verticalSpeedRange.min, verticalSpeedRange.max);
+
         float randomYPosition = Random.Range((boundary.Bottom), boundary.Top);
-        transform.position = new Vector2(boundary.Right, randomYPosition);
+        //transform.position = new Vector2(randomXPosition, Random.Range(boundary.Top, boundary.Top + 2.0f));
+        transform.position = new Vector2(Random.Range(boundary.Right, boundary.Right + 2.0f), randomYPosition);
     }
 
     /// <summary>
